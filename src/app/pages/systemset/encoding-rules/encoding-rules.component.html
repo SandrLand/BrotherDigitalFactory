@@ -1,0 +1,95 @@
+<div class="da-list-wrap">
+  <div class="da-content-banner">
+    <d-breadcrumb>
+      <d-breadcrumb-item><a routerLink="/">{{ 'system.breadcrumb.home' | translate }}</a></d-breadcrumb-item>
+      <d-breadcrumb-item>{{ 'system.breadcrumb.EncodingRules' | translate }}</d-breadcrumb-item>
+    </d-breadcrumb>
+  </div>
+  <div class="da-content-wrapper">
+    <da-layout-row [daGutter]="[24, 24]">
+      <da-col-item [daSpan]="24" [daXs]="24" >
+        <div class="da-list-container">
+          <div class="da-list-header">
+            <d-row>
+              <d-col [dSpan]="24" >
+                <div>
+                  <input dTextInput style="width: 180px;"  [error]="false" placeholder="编码规则查询">
+                  <d-button id="primaryBtn" style="margin-left: 8px"><i class="icon icon-filter-o me-2"></i>查询</d-button>
+                  <d-button bsStyle="common"> <i class="icon icon-refresh me-2"></i>重置</d-button>
+                </div>
+                <div class="btn-group">
+                  <d-button bsstyle="primaryBtn" routerLink="/pages/systemset/AddEncoding-Rules"> <i class="icon icon-add me-2"></i>新增</d-button>
+                  <d-button bsStyle="success" (btnClick)="EnableCodeRule()"><i class="icon icon-right me-2"></i>启用</d-button>
+                  <d-button bsStyle="warning" (btnClick)="DisableCodeRule()"><i class="icon icon-error me-2"></i>禁用</d-button>
+                </div>
+              </d-col>
+            </d-row>
+          </div>
+          <div class="list-content" >
+            <d-data-table [dataSource]="EncodingRules" [lazy]="true" [scrollable]="true" [fixHeader]="true" [maxHeight]="tableheight"[tableWidthConfig]="tableWidthConfig"  [tableOverflowType]="'auto'" [scrollable]="true"  (checkAllChange)="checkAllChange($event)" [resizeable]="true">
+              <thead dTableHead [checkable]="true">
+                <tr dTableRow>
+                  <th dHeadCell [fixedLeft]="'80px'">
+                    <span>操作</span>
+                  </th>
+                  <th dHeadCell *ngFor="let colOption of dataTableOptions.columns">{{ colOption.header }}</th>
+                </tr>
+              </thead>
+              <tbody dTableBody>
+                <ng-template let-rowItem="rowItem" let-rowIndex="rowIndex">
+                  <tr dTableRow>
+                    <td dTableCell [fixedLeft]="'0px'">
+                      <d-checkbox [disabled]="false" [showAnimation]="true" [ngModelOptions]="{ standalone: true }"
+                      [ngModel]="rowItem.$checked"
+                      dTooltip
+                      (change)="checkItemChange($event, rowItem)"
+                      ></d-checkbox>
+                    </td>
+                    <td dTableCell [fixedLeft]="'80px'" [rowItem]="rowItem">
+                      <span><a class="devui-link" (click)="edit(rowItem?.id)">编辑</a></span>
+                      <span class="ms-3"><a class="devui-link-danger" (click)="DeleteEncodingRules(rowItem?.id)">删除</a></span>
+                    </td>
+                    <td dTableCell  [rowItem]="rowItem"
+                    [field]="'showType'">
+                      <span>{{ rowItem?.type}}</span>
+                    </td>
+                    <td dTableCell  [rowItem]="rowItem"
+                    [field]="'type'">
+                      <span>{{ rowItem?.code}}</span>
+                    </td>
+                    <td dTableCell  [rowItem]="rowItem"
+                    [field]="'enabled'">
+                      <span><d-tag [tag]=" rowItem?.enabled | status" [labelStyle]="rowItem?.enabled" ></d-tag></span>
+                    </td>
+                  </tr>
+                </ng-template>
+              </tbody>
+            </d-data-table>
+          </div>
+         <div class="page-footer">
+            <div>
+              <p>已选 <span class="underline">{{checkedIds.length}}</span> 条
+                <a>清空</a>
+              </p>
+            </div>
+            <d-pagination
+            [size]="'sm'"
+            [canViewTotal]="true"
+            [canChangePageSize]="true"
+            [canJumpPage]="true"
+            [maxItems]="5"
+            [total]="this.pager.total"
+            [pageSizeOptions]="this.pageSizeOptions"
+            [(pageSize)]="pager.pageSize"
+            [(pageIndex)]="pager.pageIndex"
+            (pageIndexChange)="pageIndexChange($event)"
+            (pageSizeChange)="pageSizeChange($event)"
+            >
+          </d-pagination>
+          </div>
+
+        </div>
+      </da-col-item>
+    </da-layout-row>
+  </div>
+</div>

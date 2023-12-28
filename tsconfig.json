@@ -1,33 +1,40 @@
-/* To learn more about this file see: https://angular.io/config/tsconfig. */
 {
+  "$schema": "https://json.schemastore.org/tsconfig",
+  "proxy": null,
+  // Rest of the configuration...
   "compileOnSave": false,
   "compilerOptions": {
     "baseUrl": "./",
     "outDir": "./dist/out-tsc",
     "forceConsistentCasingInFileNames": true,
-    "strict": true,
-    "noImplicitOverride": true,
-    "noPropertyAccessFromIndexSignature": true,
+    "strict": false,
     "noImplicitReturns": true,
     "noFallthroughCasesInSwitch": true,
     "sourceMap": true,
-    "declaration": false,
+    "declaration": true,
     "downlevelIteration": true,
     "experimentalDecorators": true,
     "moduleResolution": "node",
     "importHelpers": true,
     "target": "ES2022",
-    "module": "ES2022",
-    "useDefineForClassFields": false,
+    "module": "es2020",
     "lib": [
-      "ES2022",
+      "es2018",
       "dom"
-    ]
+    ],
+    "paths": {
+      "@devui": [
+        "node_modules/ng-devui"
+      ]
+    },
+    "useDefineForClassFields": false
   },
   "angularCompilerOptions": {
     "enableI18nLegacyMessageIdFormat": false,
     "strictInjectionParameters": true,
     "strictInputAccessModifiers": true,
-    "strictTemplates": true
+    "strictPropertyInitialization": false,
+    "strictTemplates": true,
+    "skipLibCheck": true
   }
 }

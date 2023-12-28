@@ -1,0 +1,114 @@
+  <div class="da-content-banner">
+    <d-breadcrumb>
+      <d-breadcrumb-item><a routerLink="/">{{ 'system.breadcrumb.home' | translate }}</a></d-breadcrumb-item>
+      <d-breadcrumb-item><a routerLink="/pages/systemset/Encoding-Rules">{{ 'system.breadcrumb.EncodingRules' | translate }}</a></d-breadcrumb-item>
+      <d-breadcrumb-item>{{ 'system.breadcrumb.ADDEncodingRules' | translate }}</d-breadcrumb-item>
+    </d-breadcrumb>
+  </div>
+  <div class="da-content-wrapper">
+    <da-layout-row [daGutter]="[24,24]">
+      <da-col-item [daSpan]="24" [daXs]="24">
+        <div class="da-list-container ">
+          <d-row>
+            <d-col [dSpan]="24">
+              <div class="card ">
+                <div style="text-align: center;">
+                  <h2>
+                    <span>{{this.AddEndcode.items[0].value}}</span>
+                    <span>{{this.AddEndcode.separator}}</span>
+                    <span>{{this.AddEndcode.items[1].value}}</span>
+                    <span *ngIf="this.selectValue===3">
+                    {{this.AddEndcode.separator}}
+                    </span>
+                    <span *ngIf="this.selectValue===3">
+                    {{this.AddEndcode.items[2].value}}
+                    </span>
+                  </h2>
+                  <p>
+                    <span>{{this.AddEndcode.items[0].rule | ruleToText}}</span>
+                    <span>{{this.AddEndcode.separator}}</span>
+                    <span>{{this.AddEndcode.items[1].rule | ruleToText}}</span>
+                    <span *ngIf="this.selectValue===3">
+                        {{this.AddEndcode.separator}}
+                    </span>
+                    <span *ngIf="this.selectValue===3">
+                        {{this.AddEndcode.items[2].rule | ruleToText}}
+                    </span>
+                    </p>
+                </div>
+              </div>
+            </d-col>
+          </d-row>
+          <d-row class="mt-5">
+            <d-col [dSpan]="24">
+              <div class="card px-5 ">
+                <form >
+                  <d-row [dGutter]="24">
+                    <d-col [dSpan]="{ss:24,mm:6}">
+                      <label >
+                        编码类型
+                      </label>
+                      <input type="text" dTextInput [size]="'sm'" name="type" [(ngModel)]="this.AddEndcode.type"  required  #type="ngModel">
+                      <div class="invalid" *ngIf="type.invalid && type.touched">*值不能为空</div>
+                    </d-col>
+                    <d-col [dSpan]="{ss:24,mm:6}">
+                      <label >
+                        编码分段
+                      </label>
+                      <d-select [options]="this.selectOptions" name="select1" [filterKey]="'label'" [(ngModel)]="this.selectValue" (valueChange)="getSelectValue($event)"></d-select>
+                    </d-col>
+                    <d-col [dSpan]="{ss:24,mm:6}">
+                      <label >
+                        分割符号
+                      </label>
+                      <input type="text" dTextInput [size]="'sm'" [(ngModel)]="this.AddEndcode.separator" name="separator">
+                    </d-col>
+                    <d-col [dSpan]="{ss:24,mm:6}">
+                      <label >
+                        是否启用
+                      </label>
+                      <div class="mt-2">
+                        <d-toggle (change)="enabled($event)"></d-toggle>
+                      </div>
+                    </d-col>
+                  </d-row>
+                </form>
+              </div>
+            </d-col>
+          </d-row>
+          <d-row class="mt-5" [dGutter]="24" [dGutterNoOuter]="true">
+            <d-col [dSpan]="{ss:24,mm:6}">
+              <div class="card encode-rule-list">
+                <label class="form-label">编码1段</label>
+                <app-encode-section [selectRule]="0" [selected]="{ label: '常量', rule: 0 }" (PostdataChange)="onDataChanged($event,0)" [shouldValidate]="this.shouldValidate"></app-encode-section>
+              </div>
+            </d-col>
+            <d-col [dSpan]="{ss:24,mm:6}">
+              <div class="card encode-rule-list">
+                <label class="form-label">编码2段</label>
+                <app-encode-section [selectRule]="1" [selected]="{ label: '日期', rule: 1 }" (PostdataChange)="onDataChanged($event,1)" [shouldValidate]="this.shouldValidate"></app-encode-section>
+              </div>
+            </d-col>
+            <d-col [dSpan]="{ss:24,mm:6}" *ngIf="this.selectValue===3">
+              <div class="card encode-rule-list">
+                <label class="form-label">编码3段</label>
+                <app-encode-section [selectRule]="2" [selected]="{ label: '流水号', rule: 2 }" (PostdataChange)="onDataChanged($event,2)" [shouldValidate]="this.shouldValidate"></app-encode-section>
+              </div>
+            </d-col>
+          </d-row>
+          <d-row>
+            <d-col [dSpan]="24">
+              <div class=" mt-5">
+                <div style="text-align: center;">
+                  <d-button id="primaryBtn" style="margin-left: 8px" (btnClick)="submit()">确定</d-button>
+                  <d-button bsStyle="common" (btnClick)="cancle()">取消</d-button>
+                </div>
+              </div>
+            </d-col>
+          </d-row>
+        </div>
+      </da-col-item>
+    </da-layout-row>
+  </div>
+  <d-toast [value]="msgs" [life]="3000" [styleClass]="'custom-class'"></d-toast>
+

@@ -1,0 +1,22 @@
+@import "ng-devui/styles-var/devui-var.scss";
+@import "src/app/@shared/styles/common.scss";
+
+.modal-card{
+  display: flex;
+  align-items: center;
+  flex-direction: row;
+}
+.form-input-box{
+  width: calc(100% - 80px);
+}
+label{
+  width: 80px;
+  margin-right: 12px;
+  font-size:$devui-font-size-card-title	;
+}
+.mt-3{
+  margin-top: 8px
+}
+.invalid{
+  color: #f66f6a;
+}

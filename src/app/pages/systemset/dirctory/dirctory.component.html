@@ -1,0 +1,99 @@
+<div class="da-list-wrap">
+  <div class="da-content-banner">
+    <d-breadcrumb>
+      <d-breadcrumb-item><a routerLink="/">{{ 'system.breadcrumb.home' | translate }}</a></d-breadcrumb-item>
+      <d-breadcrumb-item>{{ 'system.breadcrumb.Dirctory' | translate }}</d-breadcrumb-item>
+    </d-breadcrumb>
+  </div>
+</div>
+<div class="da-content-wrapper">
+  <da-layout-row [daGutter]="[24, 24]">
+    <da-col-item [daSpan]="24" [daXs]="24" >
+      <div class="da-list-container ">
+        <d-row [dSpace]="24" [dSpaceDirection]="'horizontal'">
+          <div class="dictionary-type-box">
+            <div class="card">
+              <div class="card-title">
+                <span>字典类别</span>
+              </div>
+              <div class="card-body mt-3">
+                <d-tree  #basicTree  [tree]="treeData" [treeNodeIdKey]="'id'"   [treeNodeTitleKey]="'name'"   [treeNodeChildrenKey]="'subCategories'"
+                 (nodeSelected)="nodeSelected($event)"
+                 (afterTreeInit)="afterTreeInit($event)"
+                 >
+                </d-tree>
+              </div>
+              <div class="card-footer d-flex justify-content-center align-items-bottom">
+                <d-button bsStyle="common" bsSize="sm" (btnClick)="addDirctoyType()">新增</d-button>
+                <d-button bsStyle="common" bsSize="sm" (btnClick)="EditDirctoyType()">编辑</d-button>
+                <d-button bsStyle="danger" bsSize="sm" (btnClick)="DeleteDirctoyType()">删除</d-button>
+              </div>
+            </div>
+          </div>
+          <div class="dictionary-box">
+            <div class="card">
+              <div class="card-header">
+                <d-button bsStyle="primary" (btnClick)="addDirctoy()"> <i class="icon icon-add me-2"></i>新增</d-button>
+                <d-button bsStyle="danger" (btnClick)="deleteDirctoy()"><i class="icon icon-delete me-2"></i>删除</d-button>
+              </div>
+              <div class="mt-3" >
+                <div class="list-content" >
+                <d-data-table [dataSource]="this.dirctorData" [lazy]="true" [scrollable]="true" [fixHeader]="true" [maxHeight]="tableheight" [tableOverflowType]="'auto'" [scrollable]="true" [resizeable]="true" [tableWidthConfig]="tableWidthConfig" (checkAllChange)="checkAllChange($event)" >
+                  <thead dTableHead [checkable]="true" >
+                    <tr dTableRow>
+                      <th dHeadCell *ngFor="let colOption of dataTableOptions.columns">{{ colOption.header }}</th>
+                    </tr>
+                  </thead>
+                  <tbody dTableBody>
+                    <ng-template let-rowItem="rowItem" let-rowIndex="rowIndex">
+                      <tr dTableRow>
+                        <td dTableCell>
+                          <d-checkbox [disabled]="false" [showAnimation]="true"
+                          [ngModelOptions]="{ standalone: true }" [ngModel]="rowItem.$checked" dTooltip
+                          (change)="checkItemChange($event, rowItem)"
+                          ></d-checkbox>
+                        </td>
+                        <td dTableCell [rowItem]="rowItem">
+                          <span><a class="devui-link" (click)="editDirctoy(rowItem)">{{rowItem?.entryName}}</a></span>
+                        </td>
+                        <td dTableCell [rowItem]="rowItem">
+                          <span>{{rowItem?.entryValue}}</span>
+                        </td>
+                        <td dTableCell [rowItem]="rowItem">
+                          <span>{{rowItem?.description}}</span>
+                        </td>
+                      </tr>
+                    </ng-template>
+                  </tbody>
+                </d-data-table>
+                </div>
+                <div class="page-footer">
+                  <div>
+                    <p>已选 <span class="underline">{{checkedIds.length}}</span> 条
+                      <a>清空</a>
+                    </p>
+                  </div>
+                  <d-pagination
+                  [size]="'sm'"
+                  [canViewTotal]="true"
+                  [canChangePageSize]="true"
+                  [canJumpPage]="true"
+                  [maxItems]="5"
+                  [total]="this.pager.total"
+                  [pageSizeOptions]="this.pageSizeOptions"
+                  [(pageSize)]="pager.pageSize"
+                  [(pageIndex)]="pager.pageIndex"
+                  (pageIndexChange)="pageIndexChange($event)"
+                  (pageSizeChange)="pageSizeChange($event)"
+                  >
+                </d-pagination>
+                </div>
+              </div>
+            </div>
+          </div>
+        </d-row>
+      </div>
+    </da-col-item>
+  </da-layout-row>
+</div>
+<d-toast [value]="msgs" [life]="3000" [styleClass]="'custom-class'"></d-toast>

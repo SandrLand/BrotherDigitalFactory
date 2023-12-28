@@ -1,0 +1,57 @@
+@import "ng-devui/styles-var/devui-var.scss";
+@import "src/app/@shared/styles/common.scss";
+d-button{
+  margin-right: 12px;
+}
+.btn-group{
+  margin-top: 8px;
+}
+.list-content{
+  margin-top: 12px;
+}
+.devui-link-danger{
+  color: #f66f6a;
+  color: var(--devui-danger-text,#f66f6a);
+  cursor: pointer;
+  &:hover{
+    text-decoration: underline;
+  }
+}
+.ms-3{
+  margin-left: 8px
+}
+.mt-3{
+  margin-top: 8px
+}
+.page-footer{
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  margin-top: 10px;
+}
+.underline{
+  text-decoration: underline;
+}
+.list-content{
+  height: calc(100vh - 325px);
+}
+
+:host ::ng-deep .devui-tag-item.true {
+  background-color: $devui-green-60;
+  color: $devui-light-text;
+  box-sizing: border-box;
+}
+:host ::ng-deep .devui-tag-item.false {
+  box-sizing: border-box;
+  background-color: $devui-warning;
+  color: $devui-light-text;
+}
+
+d-tag {
+  margin: 4px;
+}
+
+.me-2{
+  margin-right: 5px;
+}

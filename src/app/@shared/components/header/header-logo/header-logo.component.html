@@ -1,0 +1,9 @@
+<div class="da-logo" [ngClass]="{ 'da-logo-shrink': shrink }" routerLink="/">
+  <div class="da-logo-devui">
+    <img src="../../../../../assets/favicon.ico" alt="DevUI-Logo" />
+  </div>
+  <div *ngIf="!shrink" class="da-logo-text">
+    <span class="bro">Brothers</span>
+    <span class="text">布拉泽数工厂</span>
+  </div>
+</div>

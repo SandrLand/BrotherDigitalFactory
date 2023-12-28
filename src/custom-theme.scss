@@ -1,0 +1,45 @@
+@import '.././node_modules/ng-devui/styles-var/devui-var.scss';
+@import 'ng-devui/devui-layout.css';
+
+body {
+  background-color: $devui-base-bg;
+}
+
+[ui-theme='devui-dark-theme'],
+.is-dark[ui-theme='customize-theme'] {
+  d-header,
+  d-aside {
+    background-color: #202124;
+  }
+  .card{
+    background-color: $devui-base-bg!important;
+  }
+}
+[ui-theme="pinkTheme"]{
+  .devui-table thead tr {
+    background-color: #fff!important;
+  }
+  .devui-table tbody>tr {
+    background-color: #fff!important;
+  }
+  .devui-table tbody>tr:hover {
+    background-color: #f8f1f5!important;
+  }
+  .da-list-container{
+    background-color: #fff!important;
+  }
+  .card{
+    background-color: #fff!important;
+  }
+}
+ .devui-btn:not(.devui-btn-xs):not(.devui-btn-sm):not(.devui-btn-lg), body[ui-theme=sweet-theme] .devui-btn:not(.devui-btn-xs):not(.devui-btn-sm):not(.devui-btn-lg), body[ui-theme=provence-theme] .devui-btn:not(.devui-btn-xs):not(.devui-btn-sm):not(.devui-btn-lg), body[ui-theme=deep-theme] .devui-btn:not(.devui-btn-xs):not(.devui-btn-sm):not(.devui-btn-lg), body[ui-theme=galaxy-theme] .devui-btn:not(.devui-btn-xs):not(.devui-btn-sm):not(.devui-btn-lg) {
+    height: 32px;
+    line-height: 32px;
+}
+d-pagination ul.devui-pagination-sm > li > a, body[ui-theme=sweet-theme] d-pagination ul.devui-pagination-sm > li > a, body[ui-theme=provence-theme] d-pagination ul.devui-pagination-sm > li > a, body[ui-theme=deep-theme] d-pagination ul.devui-pagination-sm > li > a, body[ui-theme=galaxy-theme] d-pagination ul.devui-pagination-sm > li > a {
+  width: 24px !important;
+}
+d-pagination div.devui-pagination ul.devui-pagination-list li:not(.disabled).active a, body[ui-theme=sweet-theme] d-pagination div.devui-pagination ul.devui-pagination-list li:not(.disabled).active a, body[ui-theme=provence-theme] d-pagination div.devui-pagination ul.devui-pagination-list li:not(.disabled).active a, body[ui-theme=deep-theme] d-pagination div.devui-pagination ul.devui-pagination-list li:not(.disabled).active a, body[ui-theme=galaxy-theme] d-pagination div.devui-pagination ul.devui-pagination-list li:not(.disabled).active a {
+  color: #ffffff !important;
+  cursor: pointer !important;
+}

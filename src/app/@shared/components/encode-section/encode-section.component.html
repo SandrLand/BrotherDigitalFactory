@@ -1,0 +1,27 @@
+<div>
+  <d-select  [options]="typeOptions" name="typeSelect" [(ngModel)]="selected"  [filterKey]="'label'" (valueChange)="onSelectChange($event)"></d-select>
+</div>
+<div class="mt-2" *ngIf="this.selectRule === 0">
+  <label>常量值</label>
+  <input type="text" dTextInput  (input)="onConstantValueChange($event)" [(ngModel)]="value" required #type="ngModel">
+  <div class="invalid" *ngIf="type.invalid && type.touched">*值不能为空</div>
+</div>
+<div class="mt-2" *ngIf="this.selectRule ===1">
+  <label>日期格式</label>
+  <d-select  [options]="dateOptions" name="dateSelect"   [filterKey]="'label'" [(ngModel)]="this.dataselected" (valueChange)="onDateOptionChange($event)"></d-select>
+</div>
+<div class="mt-2" *ngIf="this.selectRule ===2">
+  <div>
+    <label>长度</label>
+    <div>
+      <d-input-number id="length" [(ngModel)]="length"   class="input-number"  [min]="0" [maxLength]="10" [decimalLimit]="0" (ngModelChange)="onLengthValueChange($event)" [max]="10"></d-input-number>
+    </div>
+    <div class="invalid" *ngIf="this.length<1&&this.shouldValidate">*长度不能低于1</div>
+  </div>
+  <div>
+    <label>初始值</label>
+    <div>
+      <d-input-number id="InitialValue" [(ngModel)]="init" class="input-number"  [min]="0" [maxLength]="10" [decimalLimit]="0" (ngModelChange)="onInitValueChange($event)"></d-input-number>
+    </div>
+  </div>
+</div>

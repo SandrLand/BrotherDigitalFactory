@@ -1,1 +1,115 @@
-/* You can add global styles to this file, and also import other style files */
+@import './custom-theme.scss';
+
+html,
+body {
+  height: 100%;
+}
+
+body {
+  background-color: $devui-base-bg;
+}
+
+.devui-dropdown-menu {
+  .devui-dropdown-item {
+    font-size: $devui-font-size;
+    color: $devui-text;
+
+    .icon {
+      font-size: $devui-font-size;
+      margin-right: 8px;
+    }
+
+    .da-language-prefix {
+      margin-right: 8px;
+    }
+  }
+  .da-active-lang .devui-dropdown-item {
+    color: $devui-list-item-active-text !important;
+    background-color: $devui-list-item-active-bg !important;
+  }
+}
+
+.da-notice-modal {
+  width: 320px;
+  max-height: 380px;
+}
+
+@media only screen and (max-width: 1023px) {
+  .modal-dialog {
+    max-width: 400px !important;
+  }
+}
+
+@media only screen and (max-width: 450px) {
+  .da-notice-modal {
+    left: 40px !important;
+  }
+}
+
+@media only screen and (max-width: 395px) {
+  .da-notice-modal {
+    left: 60px !important;
+  }
+}
+.devui-btn.devui-btn-success{
+  color: #fff;
+  color: var(--devui-light-text, #ffffff);
+  min-width: 64px;
+  background-color: #3ac295!important;
+
+}
+.devui-btn.devui-btn-warning{
+  color: #fff;
+  color: var(--devui-light-text, #ffffff);
+  min-width: 64px;
+  background-color: #fac20a!important;
+
+}
+span.title {
+  text-align: center!important;
+}
+td{
+  text-align: center!important;
+
+}
+.devui-table thead tr th .drag-icon {
+  display: inline-block;
+  margin-right: 0 !important;
+  visibility: hidden;
+}
+@import 'ng-devui/theme-collection/extend-theme.css';
+
+.devui-btn.devui-btn-sm {
+  padding: 0 16px;
+  padding: var(--devui-btn-sm-padding, 0 16px);
+  height: 28px!important;
+  line-height: 28px;
+  font-size: 12px;
+  font-size: var(--devui-font-size-sm, 12px);
+  min-width: 56px;
+}
+.devui-table[_ngcontent-ng-c1223145376] thead tr th .header-container {
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    svg {
+      width: 0px!important;
+      height: 16px;
+    }
+}
+.devui-table[_ngcontent-ng-c1223145376] thead tr th .header-container {
+  padding-left: 0!important;
+  padding-right: 0!important;
+}
+.devui-table[_ngcontent-ng-c1223145376] thead tr th.devui-checkable-cell {
+  padding: 0px 0 0px 0px!important;
+}
+.devui-table[_ngcontent-ng-c1223145376] thead tr .check-box-all {
+  vertical-align: middle;
+   margin-right: 0px!important;
+}
+.devui-table[_ngcontent-ng-c1223145376] thead tr th {
+  text-align: center!important;
+}
+

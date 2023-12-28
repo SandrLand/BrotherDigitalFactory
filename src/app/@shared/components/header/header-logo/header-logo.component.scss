@@ -1,0 +1,52 @@
+@import 'ng-devui/styles-var/devui-var.scss';
+
+.da-logo {
+  display: flex;
+  align-items: center;
+  height: 60px;
+  padding-left: 15px;
+  cursor: pointer;
+
+  &.da-logo-shrink {
+    width: 54px;
+    padding-left: 0;
+    justify-content: center;
+
+    .da-logo-devui {
+      margin-right: 0;
+    }
+  }
+
+  .da-logo-devui {
+    margin-right: 5px;
+    display: flex;
+    align-items: center;
+
+    img {
+      width: 35px;
+      height: 35px;
+    }
+  }
+  .da-logo-text{
+    display: flex;
+    flex-direction: column;
+  }
+  .da-logo-text span{
+    padding: 0px;
+  }
+  .da-logo-text .bro{
+    font-size: $devui-font-size-card-title;
+    font-weight: 600;
+    white-space: nowrap;
+  }
+  .da-logo-text text{
+    font-size: $devui-font-size-sm;
+  }
+  &:focus {
+    outline: none;
+  }
+}
+
+.router-active {
+  outline: none;
+}
